@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+</head>
+<body>
+
+<div id="app">
+
+    <p :style="{color: activeColor, fontSize: fontSize+'px'}">对象语法1</p>
+    <p :style="styleObject">对象语法2</p>
+    <p :style="[styleObjectA,styleObjectB]">数组语法</p>
+
+</div>
+
+<script src="bower_components/vue/dist/vue.js"></script>
+<script>
+
+    new Vue({
+        el: "#app",
+        data: {
+            activeColor: 'red',
+            fontSize: 30,
+            styleObject: {
+                color: 'blue',
+                fontSize: '13px'
+            },
+            styleObjectA: {
+                color: 'green',
+                fontSize: '13px'
+            },
+            styleObjectB: {
+                fontSize: '30px', //可见后面的对象的属性会将前面的属性覆盖
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

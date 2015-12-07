@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+</head>
+<body>
+
+<ul id="app">
+    <li v-for="item in items">
+        {{ parentMessage }} - {{ $index }} - {{item.message}}
+    </li>
+    <li v-for="(index,item) in items">
+        {{ index }} - {{item.message}}
+    </li>
+
+
+    <template v-for="item in items">
+        <li>{{ item.message }}</li>
+        <li class="divider"></li>
+    </template>
+</ul>
+
+<script src="bower_components/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            parentMessage: 'Parent',
+            items: [
+                {message: "Foo"},
+                {message: "Bar"}
+            ]
+        }
+    });
+
+    vm.items = vm.items.filter(function (item) {
+        return item.message.match(/Foo/)
+    });
+    /**
+     *
+
+     变异方法
+
+     Vue.js 包装了被观察数组的变异方法，故它们能触发视图更新。被包装的方法有：
+
+     push()
+     pop()
+     shift()
+     unshift()
+     splice()
+     sort()
+     reverse()
+     你可以打开浏览器的控制台，用这些方法修改上例的 items 数组。例如：example1.items.push({ message: 'Baz' })。
+
+     *
+     *
+     */
+</script>
+</body>
+</html>
