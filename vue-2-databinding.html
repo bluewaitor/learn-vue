@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+</head>
+<body>
+
+    <div id="app">
+        {{name}}
+    </div>
+
+    <div id="example-2">
+        <p v-if="greeting">Hello!</p>
+    </div>
+
+<script src="bower_components/vue/dist/vue.js"></script>
+<script>
+    var exampleData = {
+        name: 'Vue.js'
+    };
+    new Vue({
+        el: '#app',
+        data: exampleData
+    });
+
+    var exampleVM2 = new Vue({
+        el: '#example-2',
+        data: {
+            greeting: true
+        }
+    })
+</script>
+</body>
+</html>

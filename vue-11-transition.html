@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+
+    <style>
+        /* 必需 */
+        .expand-transition {
+            transition: all .3s ease;
+            height: 30px;
+            padding: 10px;
+            background-color: #eee;
+            overflow: hidden;
+        }
+
+        /* .expand-enter 定义进入的开始状态 */
+        /* .expand-leave 定义离开的结束状态 */
+        .expand-enter, .expand-leave {
+            height: 0;
+            padding: 0 10px;
+            opacity: 0;
+        }
+
+
+        .bounce-enter {
+            animation: bounce-in .5s;
+        }
+        .bounce-leave {
+            animation: bounce-out .5s;
+        }
+        @keyframes bounce-in {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.5);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        @keyframes bounce-out {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.5);
+            }
+            100% {
+                transform: scale(0);
+            }
+        }
+    </style>
+</head>
+<body id="app">
+
+<div v-if="show" transition="expand">hello</div>
+<span v-show="show" transition="bounce">Look at me!</span>
+
+
+<button @click="toggle">toggle</button>
+
+<script src="bower_components/vue/dist/vue.js"></script>
+<script>
+
+    new Vue({
+        el: "#app",
+        data: {
+            show: true
+        },
+        methods: {
+            toggle: function(){
+                this.show = !this.show;
+            }
+        },
+        transitions: {
+            expand: {
+                beforeEnter: function (el) {
+                    el.textContent = 'beforeEnter'
+                },
+                enter: function (el) {
+                    el.textContent = 'enter'
+                },
+                afterEnter: function (el) {
+                    el.textContent = 'afterEnter'
+                },
+                beforeLeave: function (el) {
+                    el.textContent = 'beforeLeave'
+                },
+                leave: function (el) {
+                    el.textContent = 'leave'
+                },
+                afterLeave: function (el) {
+                    el.textContent = 'afterLeave'
+                }
+            }
+        }
+    });
+
+
+    /**
+     *
+     类名的添加和切换取决于 transition 特性的值。比如 transition="fade"，会有三个 CSS 类名：
+
+     .fade-transition 始终保留在元素上。
+
+     .fade-enter 定义进入过渡的开始状态。只应用一帧然后立即删除。
+
+     .fade-leave 定义离开过渡的结束状态。在离开过渡开始时生效，在它结束后删除。
+
+     如果 transition 特性没有值，类名默认是 .v-transition, .v-enter 和 .v-leave。
+
+     */
+
+</script>
+</body>
+</html>
