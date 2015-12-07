@@ -1,0 +1,24 @@
+{
+  "name": "learn-vue",
+  "homepage": "https://github.com/bluewaitor/learn-vue",
+  "authors": [
+    "bluewaitor <405622394@qq.com>"
+  ],
+  "description": "learn vue",
+  "main": "",
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "vue": "~1.0.10"
+  }
+}
