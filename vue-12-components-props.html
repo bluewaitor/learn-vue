@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+</head>
+<body>
+    <div id="app">
+        <child msg="hello"></child>
+    </div>
+
+    <br>
+    <br>
+
+    <div id="app2">
+        <input v-model="parentMsg">
+        <br>
+        <!-- 默认单向 -->
+        <!-- 也可以使用 .sync 或 .once 绑定修饰符显式地强制双向或单次绑定-->
+        <child :my-message="parentMsg"></child>
+    </div>
+
+<script src="bower_components/vue/dist/vue.js"></script>
+<script>
+
+    var MyComponent = Vue.extend({
+        props: ['msg'],
+        template: '<div>{{msg}}</div>'
+    });
+
+    Vue.component('child', MyComponent);
+
+    new Vue({
+        el: "#app"
+    });
+
+
+    new Vue({
+        el: "#app2",
+        data: {
+            parentMsg: "从父亲获得数据"
+        },
+        components: {
+            child: {
+                props: {
+                    myMessage: {
+                        type: String,
+                        default: "test"
+                    }
+                },
+                template: '<input v-model="myMessage" />'
+            }
+        }
+    });
+
+
+
+
+
+</script>
+</body>
+</html>

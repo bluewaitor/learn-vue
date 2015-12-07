@@ -4,21 +4,58 @@
     <meta charset="UTF-8">
     <title>Vue</title>
 </head>
-<body id="app">
+<body>
+    <div id="app">
+        <ha></ha>
+        <wa></wa>
+    </div>
 
+    <br>
+    <br>
+    <div id="app2">
+        <father>
+        </father>
+    </div>
 
 <script src="bower_components/vue/dist/vue.js"></script>
 <script>
 
-    var myComponent = Vue.extend({
+    var MyComponent = Vue.extend({
+        template: '<div>可定制的布局</div>'
+    });
 
+    Vue.component('ha', MyComponent);
+
+    Vue.component('wa', {
+        template: '<div>不用extend方法</div>'
     });
 
     new Vue({
-        el: "#app",
-        data: {},
-        methods: {}
+        el: "#app"
+    });
+
+
+    var Child = Vue.extend({
+        template: "<p>这是儿子</p>"
+    });
+
+    var Parent = Vue.extend({
+        template: '<div>这是父亲<child></child></div>',
+        components: {
+            // <my-component> 只能用在父组件模板内
+            'child': Child
+        }
+    });
+
+    new Vue({
+        el: "#app2",
+        components: {
+            'father': Parent
+        }
     })
+
+
+
 </script>
 </body>
 </html>
