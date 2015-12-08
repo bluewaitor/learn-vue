@@ -7,6 +7,9 @@
 <body>
 	<div id="demo" v-demo:hello.a.b = 'msg'></div>
 
+	<div id="demo1" v-demo1 = "{color: 'white', text: 'Hello!'}"></div>
+	<div id="demo2" v-demo2 = "{color: 'white', text: 'Hello!'}"></div>
+
 	<script src="./bower_components/vue/dist/vue.js"></script>
 	<script>
 
@@ -24,12 +27,32 @@
 		}
 	});
 
+	Vue.directive('demo1',function(value){
+		console.log(value.color);
+		console.log(value.text);
+	});
+
+	Vue.directive('demo2',{
+		update: function (value) {
+			console.log(value.color);
+			console.log(value.text);
+		}
+	});
+
 	var demo = new Vue({
 		el: '#demo',
 		data: {
 			msg: 'Hello!'
 		}
 	});
+
+	var demo1 = new Vue({
+		el: "#demo1"
+	});
+	var demo2 = new Vue({
+		el: "#demo2"
+	});
+
 	</script>
 </body>
 </html>

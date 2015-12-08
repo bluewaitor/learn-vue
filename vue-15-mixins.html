@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+</head>
+<body id="app">
+
+
+<script src="bower_components/vue/dist/vue.js"></script>
+<script>
+
+
+    var myMixin = {
+        created: function(){
+            this.hello();
+        },
+        methods: {
+            hello: function(){
+                console.log('hello from mixin!');
+            }
+        }
+    };
+
+    var Component = Vue.extend({
+        mixins: [myMixin]
+    });
+
+    var component = new Component();
+
+
+</script>
+</body>
+</html>

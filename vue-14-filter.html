@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+</head>
+<body id="app">
+
+
+<span v-text="message | upper | reverse | wrap 'head' 'tail'"></span>
+
+<script src="bower_components/vue/dist/vue.js"></script>
+<script>
+
+    Vue.filter('reverse',function(value){
+        return value.split('').reverse().join('');
+    });
+
+    Vue.filter('upper',function(value){
+        return value.toUpperCase();
+    });
+
+    Vue.filter('wrap', function(value, begin, end){
+        return begin +" " + value + " " + end;
+    });
+
+    new Vue({
+        el: "#app",
+        data: {
+            message: "hello world"
+        },
+        methods: {}
+    })
+</script>
+</body>
+</html>
